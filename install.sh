@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-REPO_PATH=https://github.com/darbit-ru/bitrix_docker_source.git
+REPO_PATH=https://github.com/darbit-ru/bitrix_docker_source_phmk.git
 BITRIX_SETUP_PATH=http://www.1c-bitrix.ru/download/scripts/bitrixsetup.php
 BITRIX_RESTORE_PATH=http://www.1c-bitrix.ru/download/scripts/restore.php
 GROUP_NAME=www-data
