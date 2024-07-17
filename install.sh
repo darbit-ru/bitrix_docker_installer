@@ -81,8 +81,7 @@ then
 
   # copy .env file from template file
   echo -e "\e[33mCopy environment setting file and starting configuration \e[39m"
-  cd $DOCKER_FOLDER_PATH
-  cp -f .env_template .env && \
+  cp -f env_template .env && \
   echo -e "\e[32m    Done \e[39m\n"
 
   # chosing PHP version
