@@ -196,6 +196,9 @@ then
   echo -e "\e[32mDatabase user: bitrix \e[39m"
   echo -e "\e[32mDatabase password: "$MYSQL_PASSWORD" \e[39m"
 
+  PUSH_SERVER_KEY=$(openssl rand -base64 32)
+  sed -i "s|#PUSH_SERVER_KEY#|$PUSH_SERVER_KEY|g" $DOCKER_FOLDER_PATH/.env
+
   # starting docker containers
   cd $DOCKER_FOLDER_PATH
   echo -e "\n\e[33mStarting DOCKER containers...\e[39m"
