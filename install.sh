@@ -2,6 +2,7 @@
 set -e
 
 REPO_PATH=https://github.com/darbit-ru/bitrix_docker_source.git
+REPO_FOLDER=bitrix_docker_source
 BITRIX_SETUP_PATH=http://www.1c-bitrix.ru/download/scripts/bitrixsetup.php
 BITRIX_RESTORE_PATH=http://www.1c-bitrix.ru/download/scripts/restore.php
 GROUP_NAME=www-data
@@ -72,13 +73,16 @@ then
   echo -e "\e[33mCloning repo to local... \e[39m"
   cd $WORK_PATH && \
   git clone $REPO_PATH > /dev/null 2>&1 && \
+  mv $WORK_PATH/$REPO_FOLDER/* $DOCKER_FOLDER_PATH > /dev/null 2>&1 && \
+  rm -rf $WORK_PATH/$REPO_FOLDER && \
   cd $(dirname $WORK_PATH) && chmod -R 775 $(basename $WORK_PATH) && chown -R root:www-data $(basename $WORK_PATH) && \
   cd $DOCKER_FOLDER_PATH
   echo -e "\e[32m    Done \e[39m\n"
 
   # copy .env file from template file
   echo -e "\e[33mCopy environment setting file and starting configuration \e[39m"
-  cp -f .env_template .env && \
+  cd $DOCKER_FOLDER_PATH
+  cp -f env_template .env && \
   echo -e "\e[32m    Done \e[39m\n"
 
   # chosing PHP version
