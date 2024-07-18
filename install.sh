@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 REPO_PATH=https://github.com/darbit-ru/bitrix_docker_source.git
@@ -45,7 +45,7 @@ if hash docker-compose > /dev/null 2>&1
 then
   echo -e "\e[32m    DOCKER-COMPOSE installed \e[39m"
 else
-  echo -e "\e[31m    DOCKER-COMPOSE not installed, install started \e[39m" && curl -L "https://github.com/docker/compose/releases/download/v2.28.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose && source ~/.bashrc > /dev/null 2>&1
+  echo -e "\e[31m    DOCKER-COMPOSE not installed, install started \e[39m" && curl -L "https://github.com/docker/compose/releases/download/v2.28.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose > /dev/null 2>&1 && chmod +x /usr/local/bin/docker-compose > /dev/null 2>&1 && source ~/.bashrc > /dev/null 2>&1 && hash docker-compose > /dev/null 2>&1
 fi
 
 # show message that all required packets installed
