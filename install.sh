@@ -14,7 +14,7 @@ function loading_icon() {
     local elapsed=0
     local loading_animation=( '—' "\\" '|' '/' )
 
-    echo -n "${loading_message} "
+    echo -e "${loading_message} "
 
     # This part is to make the cursor not blink
     # on top of the animation while it lasts
