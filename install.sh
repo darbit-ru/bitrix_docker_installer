@@ -223,7 +223,7 @@ then
 
   # starting docker containers
   cd $DOCKER_FOLDER_PATH
-  loading_icon 60 "\n\e[33mStarting DOCKER containers\e[39m"
+  loading_icon 30 "\n\e[33mStarting DOCKER containers\e[39m"
   docker-compose up -d > /dev/null 2>&1
   echo -e "\e[32m    Started\e[39m\n"
 
