@@ -8,6 +8,28 @@ BITRIX_RESTORE_PATH=http://www.1c-bitrix.ru/download/scripts/restore.php
 GROUP_NAME=www-data
 INSTALL_COMMAND=apt-get
 
+function loading_icon() {
+    local load_interval="${1}"
+    local loading_message="${2}"
+    local elapsed=0
+    local loading_animation=( '—' "\\" '|' '/' )
+
+    echo -n "${loading_message} "
+
+    # This part is to make the cursor not blink
+    # on top of the animation while it lasts
+    tput civis
+    trap "tput cnorm" EXIT
+    while [ "${load_interval}" -ne "${elapsed}" ]; do
+        for frame in "${loading_animation[@]}" ; do
+            printf "%s\b" "${frame}"
+            sleep 0.25
+        done
+        elapsed=$(( elapsed + 1 ))
+    done
+    printf " \b\n"
+}
+
 if [[ -n "$(command -v yum)" ]]; then
   INSTALL_COMMAND=yum
 fi
@@ -201,7 +223,7 @@ then
 
   # starting docker containers
   cd $DOCKER_FOLDER_PATH
-  echo -e "\n\e[33mStarting DOCKER containers...\e[39m"
+  loading_icon 60 "\n\e[33mStarting DOCKER containers\e[39m"
   docker-compose up -d > /dev/null 2>&1
   echo -e "\e[32m    Started\e[39m\n"
 
